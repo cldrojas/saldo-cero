@@ -34,7 +34,7 @@
    */
   // "vars": { "MY_VARIABLE": "production_value" },
   "vars": {
-    "NODE_ENV": "development"
+    "NODE_ENV": "production"
   }
   /**
    * Note: Use secrets to store sensitive data.
