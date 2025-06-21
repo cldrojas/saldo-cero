@@ -1,0 +1,42 @@
+---
+import TabsMenu from '@components/TabsMenu.astro'
+import TitleBar from '@components/TitleBar.astro'
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg"
+    />
+    <meta
+      name="generator"
+      content={Astro.generator}
+    />
+    <title>Saldo Cero</title>
+
+    <link
+      rel="stylesheet"
+      href="/src/styles/global.css"
+    />
+  </head>
+  <!-- TODO: add theme selector -->
+  <body class="bg-gray-900 text-gray-200 flex justify-center">
+    <main
+      class="border border-gray-700 rounded-lg min-h-svh w-full px-4 py-4 flex flex-col justify-between max-w-3xl"
+    >
+      <TitleBar />
+      <div class="flex flex-col h-full content-start border">
+        <slot />
+      </div>
+      <TabsMenu />
+    </main>
+  </body>
+</html>
