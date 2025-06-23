@@ -46,26 +46,3 @@ const toggles = [
     }
   </div>
 </div>
-
-<script>
-  // This script is intentionally left empty for now.
-  // You can add interactivity later if needed.
-  // For example, you could handle the click events for the toggles here.
-
-  document.querySelectorAll('button').forEach((button) => {
-    const buttonCode = button.getAttribute('aria-code')
-    // Add a click event listener to each button
-    button.addEventListener('click', (event) => {
-      console.log(`DEBUG:buttonCode:`, buttonCode)
-      console.log(`DEBUG:event:`, event)
-      // const code = event.target.getAttribute('aria-code');
-      // console.log(`Button clicked: ${code}`);
-      // // Here you can add the logic to handle the toggle actions
-      // // For example, you could call the onclick function associated with the toggle
-      // const toggle = toggles.find(t => t.code === code);
-      // if (toggle && typeof toggle.onclick === 'function') {
-      //   toggle.onclick();
-      // }
-    })
-  })
-</script>

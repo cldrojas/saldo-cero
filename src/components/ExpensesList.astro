@@ -1,91 +1,22 @@
 ---
-const expenses = [
-  {
-    id: 1,
-    description: 'Groceries',
-    amount: -5000,
-    date: new Date('2023-10-01'),
-    account: 'Personal'
-  },
-  {
-    id: 2,
-    description: 'Utilities',
-    amount: -7500,
-    date: new Date('2023-10-02'),
-    account: 'Household'
-  },
-  {
-    id: 3,
-    description: 'Transport',
-    amount: -2000,
-    date: new Date('2023-10-03'),
-    account: 'Travel'
-  },
-  {
-    id: 4,
-    description: 'Salary',
-    amount: 30000,
-    date: new Date('2023-10-04'),
-    account: 'Personal'
-  },
-  {
-    id: 4,
-    description: 'Salary',
-    amount: 30000,
-    date: new Date('2023-10-04'),
-    account: 'Personal'
-  },
-  {
-    id: 4,
-    description: 'Salary',
-    amount: 30000,
-    date: new Date('2023-10-04'),
-    account: 'Personal'
-  },
-  {
-    id: 4,
-    description: 'Salary',
-    amount: 30000,
-    date: new Date('2023-10-04'),
-    account: 'Personal'
-  },
-  {
-    id: 4,
-    description: 'Salary',
-    amount: 30000,
-    date: new Date('2023-10-04'),
-    account: 'Personal'
-  },
-  {
-    id: 4,
-    description: 'Salary',
-    amount: 30000,
-    date: new Date('2023-10-04'),
-    account: 'Personal'
-  },
-  {
-    id: 4,
-    description: 'Salary',
-    amount: 30000,
-    date: new Date('2023-10-04'),
-    account: 'Personal'
-  },
-  {
-    id: 5,
-    description: 'Entertainment',
-    amount: -4000,
-    date: new Date('2023-10-05'),
-    account: 'Leisure'
-  }
-]
+import Options from '@assets/options.svg'
+import type { Movement } from 'src/env'
+// const response = await fetch('/api/movements?type=expense')
+// const data = await response.json()
+// const { movements }: { movements: Movement[] } = data
+// const expenses = movements.filter((movement) => movement.type === 'expense')
+const expenses: any[] = []
 ---
 
 <div class="flex flex-col max-h-82 overflow-y-auto">
-  <ul class="space-y-2 my-4">
+  <ul class="space-y-2 px-2">
     {
       expenses.map((expense) => (
-        <li class="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
-          <div>
+        <li
+          class="flex items-center justify-between px-3 py-1 bg-gray-800 rounded-lg"
+          id={`movement-${expense.id}`}
+        >
+          <div class=" border-amber-400">
             <h3 class="text-md font-semibold">{expense.description}</h3>
             <p class="text-xs text-gray-400">
               {expense.date.toLocaleDateString('en-es', {
@@ -94,11 +25,19 @@ const expenses = [
               - {expense.account}
             </p>
           </div>
-          <div>
+          <div class=" border-blue-500 flex items-center">
             <span class={expense.amount < 0 ? 'text-red-400' : 'text-green-400'}>
               ${Math.abs(expense.amount)}
             </span>
-            <button class="text-gray-400 hover:text-white font-semibold pl-1">:</button>
+            <button
+              class="text-gray-400 hover:text-white hover:cursor-pointer font-semibold p-1"
+              onclick="menu.open(event)"
+            >
+              <Options
+                width={24}
+                height={24}
+              />
+            </button>
           </div>
         </li>
       ))

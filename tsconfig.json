@@ -5,12 +5,29 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@assets/*": ["src/assets/*"],
+      "@stores/*": ["src/stores/*"],
+      "@types/*": ["src/types/*"],
+      "@content/*": ["src/content/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@lib/*": ["src/lib/*"],
+      "@tests/*": ["src/tests/*"],
+      "@config/*": ["src/config/*"],
+      "@services/*": ["src/services/*"],
+      "@plugins/*": ["src/plugins/*"],
+      "@middleware/*": ["src/middleware/*"],
+      "@api/*": ["src/api/*"],
+      "@directives/*": ["src/directives/*"],
+      "@filters/*": ["src/filters/*"],
+      "@mixins/*": ["src/mixins/*"],
+      "@validators/*": ["src/validators/*"],
+      "@constants/*": ["src/constants/*"],
+      "@themes/*": ["src/themes/*"]
     },
     "types": ["node", "astro/client"]
   }

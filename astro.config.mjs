@@ -19,5 +19,8 @@ export default defineConfig({
           },
           imageService: 'cloudflare'
         })
-      : undefined
+      : undefined,
+  devToolbar: {
+    enabled: false
+  }
 })

@@ -15,15 +15,13 @@ const tabs = [
 
   {
     href: '/history',
-    text: 'History'
+    text: 'Activity'
   }
 ]
 ---
 
-<footer class="bg-slate-700">
-  <nav
-    class="flex w-full items-center justify-between bg-gray-800 px-4 py-1 rounded-lg my-2"
-  >
+<footer class="bg-slate-700 absolute bottom-0 self-center w-full">
+  <nav class="flex w-full items-center justify-between bg-gray-800 px-4 py-1 rounded-lg">
     {
       tabs.map((tab, i) => (
         <>

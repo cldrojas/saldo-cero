@@ -1,6 +1,7 @@
 ---
 import TabsMenu from '@components/TabsMenu.astro'
 import TitleBar from '@components/TitleBar.astro'
+import { ClientRouter } from 'astro:transitions'
 ---
 
 <!doctype html>
@@ -26,17 +27,18 @@ import TitleBar from '@components/TitleBar.astro'
       rel="stylesheet"
       href="/src/styles/global.css"
     />
+    <ClientRouter />
   </head>
   <!-- TODO: add theme selector -->
-  <body class="bg-gray-900 text-gray-200 flex justify-center">
+  <body class="bg-gray-900 text-gray-200 flex relative justify-center h-dvh">
     <main
       class="border border-gray-700 rounded-lg min-h-svh w-full px-4 py-4 flex flex-col justify-between max-w-3xl"
     >
       <TitleBar />
-      <div class="flex flex-col h-full content-start border">
+      <div class="flex flex-col h-full content-start border relative">
         <slot />
+        <TabsMenu />
       </div>
-      <TabsMenu />
     </main>
   </body>
 </html>
