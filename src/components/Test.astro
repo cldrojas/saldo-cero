@@ -1,0 +1,28 @@
+---
+import { actions } from 'astro:actions'
+
+const result = Astro.getActionResult(actions.getBalance)
+---
+
+<div>
+  <button
+    id="addIncome"
+    class="btn btn-primary border-t-indigo-600"
+  >
+    Click me to add income
+  </button>
+  {result && !result.error && <p class="success">New ammount: {result.data}</p>}
+  <script>
+    import { actions } from 'astro:actions'
+    const $btn = document.querySelector('#addIncome') as HTMLButtonElement
+    $btn.addEventListener('click', async () => {
+      console.log(`clickeadoo!`)
+      const { data, error } = await actions.addIncome({ ammount: 50 })
+      if (error) {
+        console.error('Error adding income:', error)
+      } else {
+        console.log('Income added successfully:', data)
+      }
+    })
+  </script>
+</div>
