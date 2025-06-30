@@ -6,8 +6,8 @@ declare namespace App {
 
 export type Movement = {
   id: `${string}-${string}-${string}-${string}-${string}`
-  description: string
-  account: Account
+  description?: string
+  accounts?: { from: Account; to?: Account }[]
   amount: number
   type: 'income' | 'expense' | 'transfer'
   date: Date

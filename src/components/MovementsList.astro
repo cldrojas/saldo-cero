@@ -1,34 +1,40 @@
 ---
 import Options from '@assets/options.svg'
+import { movementColor } from '@utils/index'
+import { actions } from 'astro:actions'
 import type { Movement } from 'src/env'
-// const response = await fetch('/api/movements?type=expense')
-// const data = await response.json()
-// const { movements }: { movements: Movement[] } = data
-// const expenses = movements.filter((movement) => movement.type === 'expense')
-const expenses: any[] = []
+
+const { data: movements, error } = await Astro.callAction(actions.getMovements, {})
+if (!movements && error) {
+  console.error('Error fetching balance:', error)
+  throw new Error('Failed to fetch balance')
+}
+const { qtty } = Astro.props
+const visibleMovements = (typeof qtty === 'number' && qtty > 0)
+  ? movements.slice(0, qtty)
+  : movements
 ---
 
 <div class="flex flex-col max-h-82 overflow-y-auto">
+  
   <ul class="space-y-2 px-2">
     {
-      expenses.map((expense) => (
+      visibleMovements.map((movement: Movement) => (
         <li
           class="flex items-center justify-between px-3 py-1 bg-gray-800 rounded-lg"
-          id={`movement-${expense.id}`}
+          id={`movement-${movement.id}`}
         >
           <div class=" border-amber-400">
-            <h3 class="text-md font-semibold">{expense.description}</h3>
+            <h3 class="text-md font-semibold">{movement.description}</h3>
             <p class="text-xs text-gray-400">
-              {expense.date.toLocaleDateString('en-es', {
+              {movement.date.toLocaleDateString('en-es', {
                 dateStyle: 'medium'
               })}
-              - {expense.account}
+              - {movement.accounts?.map((movement) => movement).join(', ')}
             </p>
           </div>
           <div class=" border-blue-500 flex items-center">
-            <span class={expense.amount < 0 ? 'text-red-400' : 'text-green-400'}>
-              ${Math.abs(expense.amount)}
-            </span>
+            <span class={movementColor(movement.type)}>${Math.abs(movement.amount)}</span>
             <button
               class="text-gray-400 hover:text-white hover:cursor-pointer font-semibold p-1"
               onclick="menu.open(event)"

@@ -1,39 +1,45 @@
 ---
-const { max, current } = Astro.props
+const { max, current, label, size = 192, strokeWidth = 20 } = Astro.props
 const value = (current / max) * 100
+const radius = size / 2 - strokeWidth / 2
+const circumference = 2 * Math.PI * radius
+const dashoffset = circumference * (1 - value / 100)
 ---
 
 <div class="flex justify-center items-center">
-  <div class="relative w-[192px] h-[192px] rounded-full">
-    <svg class="relative w-full h-full">
+  <div class={`relative w-[${size}px] h-[${size}px] rounded-full border border-blue-500`}>
+    <svg
+      class="relative w-full h-full"
+      width={size}
+      height={size}
+      style="transform: rotate(-90deg);"
+    >
       <circle
-        class="w-full h-full fill-transparent stroke-gray-800 stroke-[8%]"
-        cx="50%"
-        cy="50%"
-        r="46%"
+        class="w-full h-full fill-transparent stroke-gray-800"
+        stroke-width={strokeWidth}
+        cx={size / 2}
+        cy={size / 2}
+        r={radius}
         stroke-linecap="round"
       ></circle>
       <circle
-        class="w-full h-full fill-transparent stroke-gray-500 stroke-[6%]"
-        cx="50%"
-        cy="50%"
-        r="46%"
+        class="w-full h-full fill-transparent stroke-sky-600"
+        stroke-width={strokeWidth}
+        cx={size / 2}
+        cy={size / 2}
+        r={radius}
         stroke-linecap="round"
-        stroke-dasharray="calc(192 * 0.46 * 2 * 3.1416)"
-        stroke-dashoffset=`calc(192 * 0.46 * 2 * 3.1416 - (192 * 0.46 * 2 * 3.1416 * ${value}) / 100)`
+        stroke-dasharray={circumference}
+        stroke-dashoffset={dashoffset}
+        style="transition: stroke-dashoffset 0.5s;"
       ></circle>
     </svg>
-    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-      <h2 class="text-5xl font-bold text-slate-500">${value}</h2>
-      <h3 class="text-xs">Remaining Today</h3>
+    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+      <h2 class="text-5xl font-bold text-slate-500 mb-2">${Math.round(current)}</h2>
+      <h3 class="text-sm">{label}</h3>
     </div>
   </div>
 </div>
 
-<!-- Dasharray length calculation: circumference = radius * 2 * PI 
- Source:https://css-tricks.com/building-progress-ring-quickly/ 
- Example: 192 is our diameter (width) and 46% is our radius so (192 * 0.46) * 2 * PI = 554.9 ~= 555 is our circumference and dasharray. 
- Usage: 
-  1. Change '192' values to your size in HTML. 
-  2. Change '90' values to your percentage in HTML.
--->
+<!-- Dasharray length calculation: circumference = radius * 2 * PI  -->
+<!-- Source: https://css-tricks.com/building-progress-ring-quickly/ -->

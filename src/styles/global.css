@@ -1,1 +1,61 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@layer theme {
+  :root {
+    --color-primary: #2c3e50;
+    --color-secondary: #2ecc71;
+    --color-alert: #e74c3c;
+    --color-accent: #f1c40f;
+    --color-neutral-light: #ecf0f1;
+    --color-neutral-dark: #7f8c8d;
+  }
+}
+@layer utilities {
+  .bg-primary {
+    background-color: var(--color-avocado-500);
+  }
+  .text-primary {
+    color: var(--color-avocado-500);
+  }
+  .text-secondary {
+    color: var(--color-avocado-600);
+  }
+  .text-accent {
+    color: var(--color-avocado-400);
+  }
+  .text-alert {
+    color: var(--color-avocado-300);
+  }
+  .text-neutral-light {
+    color: var(--color-avocado-200);
+  }
+  .text-neutral-dark {
+    color: var(--color-avocado-100);
+  }
+}
+/* Define theme colors using CSS variables */
+/*
+@theme {
+  --font-display: "Satoshi", "sans-serif";
+  --breakpoint-3xl: 1920px;
+  --color-avocado-100: oklch(0.99 0 0);
+  --color-avocado-200: oklch(0.98 0.04 113.22);
+  --color-avocado-300: oklch(0.94 0.11 115.03);
+  --color-avocado-400: oklch(0.92 0.19 114.08);
+  --color-avocado-500: oklch(0.84 0.18 117.33);
+  --color-avocado-600: oklch(0.53 0.12 118.34);
+  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+
+}
+*/
+/*
+:root {
+  --primary: #2C3E50; /* Azul petróleo 
+  --secondary: #2ECC71; /* Verde menta 
+  --alert: #E74C3C; /* Coral suave 
+  --accent: #F1C40F; /* Amarillo cálido 
+  --neutral-light: #ECF0F1; /* Gris humo 
+  --neutral-dark: #7F8C8D; /* Gris pizarra 
+}
+*/

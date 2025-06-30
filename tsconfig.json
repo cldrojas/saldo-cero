@@ -17,6 +17,7 @@
       "@hooks/*": ["src/hooks/*"],
       "@lib/*": ["src/lib/*"],
       "@tests/*": ["src/tests/*"],
+      "@data/*": ["src/data/*"],
       "@config/*": ["src/config/*"],
       "@services/*": ["src/services/*"],
       "@plugins/*": ["src/plugins/*"],

@@ -1,14 +1,17 @@
 ---
+export const prerender = false
+import { actions } from 'astro:actions'
 import RoundProgressBar from './RoundProgressBar.astro'
 
-const accounts = [
-  { id: 'rut', name: 'Cta RUT' },
-  { id: 'mach', name: 'Mach' },
-  { id: 'mercado', name: 'Mercadopago' },
-  { id: 'coopeuch', name: 'Coopeuch vista' }
-]
+const { data: balance, error } = await Astro.callAction(actions.getBalance, undefined)
+if (!balance && error) {
+  console.error('Error fetching balance:', error)
+  throw new Error('Failed to fetch balance')
+}
 
-const data = [
+const { total, remaining, dailyAllowance, accounts, movements } = balance
+// cldrojas: Trying to get the data from action
+const dummyData = [
   {
     key: 'daysleft',
     value: 5,
@@ -16,11 +19,12 @@ const data = [
     name: 'Remaining days',
     shortName: 'days',
     class: '',
-    barClass: 'text-blue-500'
+    barClass: 'text-blue-500',
+    isNumber: true
   },
   {
     key: 'total',
-    value: 500,
+    value: total,
     order: 1,
     name: 'Total amount',
     shortName: 'total',
@@ -29,7 +33,7 @@ const data = [
   },
   {
     key: 'remaining',
-    value: 50,
+    value: Math.round(remaining),
     order: 4,
     name: 'Remaining balance',
     shortName: 'remaining',
@@ -39,7 +43,7 @@ const data = [
   },
   {
     key: 'allowance',
-    value: 100,
+    value: Math.round(dailyAllowance),
     order: 3,
     name: 'Daily allowance',
     shortName: 'allowance',
@@ -61,13 +65,13 @@ const { asBar = false } = Astro.props
       <div class="SelectedAccount">
         <label
           for="account-selector"
-          class="text-sm text-slate-400"
+          class="text-sm text-slate-400 bg-primary"
           >Selected Account</label
         >
         <select
           id="account-selector"
           name="account-selector"
-          class="bg-gray-800 text-gray-400 border border-gray-700 rounded-md px-2 text-xs 
+          class="bg-gray-800 text-gray-400 border border-gray-700 rounded-md px-2 text-xs
           flex text-center cursor-pointer outline-none"
         >
           {
@@ -87,8 +91,11 @@ const { asBar = false } = Astro.props
       !asBar && (
         <RoundProgressBar
           class="mt-4"
-          max={100}
-          current={50}
+          max={dailyAllowance}
+          current={remaining}
+          size="220"
+          strokeWidth="15"
+          label="Remaining Today"
         />
       )
     }
@@ -99,7 +106,7 @@ const { asBar = false } = Astro.props
       }`}
     >
       {
-        data.map((item) => {
+        dummyData.map((item) => {
           if (!asBar && item.onlyBar) return null
 
           return (
@@ -112,7 +119,7 @@ const { asBar = false } = Astro.props
               <h2 class={asBar ? 'text-gray-300' : 'text-gray-400 text-xs'}>
                 {asBar ? item.shortName : item.name}
               </h2>
-              <span class="text-white">${item.value}</span>
+              <span class="text-white">{`${!item.isNumber ? '$' : ''}${item.value}`}</span>
             </div>
           )
         })

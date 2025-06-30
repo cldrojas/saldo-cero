@@ -1,16 +1,15 @@
 ---
 import Layout from '@layouts/Layout.astro'
 import OverView from '@components/OverView.astro'
-import ExpensesList from '@components/ExpensesList.astro'
-import Test from '@components/Test.astro'
+import MovementsList from '@components/MovementsList.astro'
 import '@styles/global.css'
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
   <OverView />
-  <ExpensesList />
-  <Test />
+  <div class="flex items-center justify-between px-1">
+    <h2 class="p-2 font-semibold text-sky-600">Recent activity</h2>
+    <a href="/movements">View all</a>
+  </div>
+  <MovementsList qtty={3} />
 </Layout>
