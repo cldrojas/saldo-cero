@@ -1,3 +1,5 @@
+
+
 # 💸 Saldo Cero
 
 > _Libera tu mente del estrés financiero._
@@ -77,4 +79,13 @@ Inspirado por el caos, construido con cariño.
 ---
 
 ## 🗂 Estructura base del proyecto
-
+```
+src/pages/
+├── index.astro                  → Dashboard (Inicio)
+├── registrar.astro              → Registrar gasto/ingreso
+├── historial.astro              → Movimientos previos
+├── metas.astro                  → Metas de ahorro
+├── presupuesto.astro            → Presupuesto mensual
+├── configuracion.astro          → Perfil y ajustes
+├── onboarding.astro
+```
