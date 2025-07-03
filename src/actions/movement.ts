@@ -1,0 +1,7 @@
+
+/**
+ * createMovement()
+ * editMovement()
+ * deleteMovement()
+ * getMovementsByUser()
+ */
