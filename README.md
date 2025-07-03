@@ -1,48 +1,80 @@
-# Astro Starter Kit: Basics
+# 💸 Saldo Cero
 
-```sh
-npm create astro@latest -- --template basics
-```
+> _Libera tu mente del estrés financiero._
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+**Saldo Cero** es una app minimalista de finanzas personales diseñada para ayudarte a tomar decisiones con claridad. No necesitas conectar cuentas bancarias ni entender contabilidad: solo anota lo esencial y nosotros hacemos el resto.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## ✨ ¿Qué es Saldo Cero?
 
-## 🚀 Project Structure
+Una herramienta simple y directa para:
 
-Inside of your Astro project, you'll see the following folders and files:
+- 📌 Saber cuánto dinero tienes realmente  
+- 📅 Organizar tus pagos y cobros  
+- 🚨 Evitar olvidos y gastos fantasmas  
+- 📈 Tomar decisiones financieras sin ansiedad
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Sin curvas de aprendizaje. Sin publicidad. Sin humo.
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+---
 
-## 🧞 Commands
+## 🧠 Filosofía
 
-All commands are run from the root of the project, from a terminal:
+- **Menos fricción, más claridad**  
+- **Privacidad por defecto** (tus datos son tuyos)  
+- **Cero estrés, cero deudas, cero enredos**
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Pensada para personas que:
 
-## 👀 Want to learn more?
+- Se estresan al ver su cuenta
+- Quieren ahorrar pero no logran hacerlo
+- Sienten que su plata “se va sola”
+- Necesitan control, pero sin Excel ni apps bancarias confusas
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+
+## 🛠️ Stack Tecnológico
+
+- **Frontend:** Astro + React  
+- **Estado y lógica:** Signals + Store propia  
+- **Backend (próximamente):** Supabase / SQLite local  
+- **Estilo:** Tailwind CSS + diseño responsivo 
+- **CI/CD (próximamente):** GitHub Actions
+
+---
+
+## 🚧 Funciones en desarrollo
+
+Lista de funciones implementadas o por implementar (se irá actualizando):
+
+| Estado | Función                              | Descripción breve                        |
+|--------|--------------------------------------|-------------------------------------------|
+| ✅     | Onboarding                           | Flujo simple para explicar la app         |
+| 🟡     | Registro de ingresos/gastos          | Entrada manual con sugerencias            |
+| 🔜     | Cálculo de saldo real                | Resta automática de pagos futuros         |
+| 🔜     | Notificaciones inteligentes          | Recordatorios personalizados              |
+| 🔜     | Planificador mensual                 | Vista de flujo futuro de dinero           |
+| 🔜     | Sincronización opcional (Supabase)   | Guardado en la nube (opt-in)              |
+
+> 🧩 Puedes contribuir, sugerir ideas o simplemente seguir el avance.
+
+---
+
+## 📲 Próximamente
+
+- App para Android (PWA)
+- Modo oscuro automático
+- Integración con calendario
+
+---
+
+## 🧑‍💻 ¿Quién está detrás?
+
+Proyecto personal de [Daniel](https://github.com/cldrojas), ingeniero informático con hambre de claridad financiera y diseño funcional.  
+Inspirado por el caos, construido con cariño.
+
+---
+
+## 🗂 Estructura base del proyecto
+
