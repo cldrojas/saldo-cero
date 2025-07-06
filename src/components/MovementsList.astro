@@ -1,8 +1,8 @@
 ---
-import Options from '@assets/options.svg'
 import { movementColor } from '@utils/index'
 import { actions } from 'astro:actions'
 import type { Movement } from 'src/env'
+import VerticalEllipsisButton from './VerticalEllipsisButton.astro'
 
 const { data: movements, error } = await Astro.callAction(actions.getMovements, {})
 if (!movements && error) {
@@ -10,13 +10,11 @@ if (!movements && error) {
   throw new Error('Failed to fetch balance')
 }
 const { qtty } = Astro.props
-const visibleMovements = (typeof qtty === 'number' && qtty > 0)
-  ? movements.slice(0, qtty)
-  : movements
+const visibleMovements =
+  typeof qtty === 'number' && qtty > 0 ? movements.slice(0, qtty) : movements
 ---
 
 <div class="flex flex-col max-h-82 overflow-y-auto">
-  
   <ul class="space-y-2 px-2">
     {
       visibleMovements.map((movement: Movement) => (
@@ -35,15 +33,10 @@ const visibleMovements = (typeof qtty === 'number' && qtty > 0)
           </div>
           <div class=" border-blue-500 flex items-center">
             <span class={movementColor(movement.type)}>${Math.abs(movement.amount)}</span>
-            <button
-              class="text-gray-400 hover:text-white hover:cursor-pointer font-semibold p-1"
-              onclick="menu.open(event)"
-            >
-              <Options
-                width={24}
-                height={24}
-              />
-            </button>
+            <VerticalEllipsisButton
+              id={movement.id}
+              server:defer
+            />
           </div>
         </li>
       ))

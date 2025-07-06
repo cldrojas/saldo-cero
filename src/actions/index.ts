@@ -27,12 +27,14 @@ const db = {
       id: crypto.randomUUID(),
       type: 'expense',
       amount: 10000,
+      description: 'Groceries',
       date: new Date('2023-10-02')
     },
     {
       id: crypto.randomUUID(),
       type: 'expense',
       amount: 5000,
+      description: 'Transport',
       date: new Date('2023-10-03')
     },
     {
@@ -101,6 +103,18 @@ export const server = {
         return db.movements.filter((m) => m.type === input.type)
       }
       return db.movements
+    }
+  }),
+  getAccounts: defineAction({
+    input: z.string().optional(),
+    handler: async (input) => {
+      // Here you would typically fetch the accounts from a database or perform some action
+      // For demonstration, we will just return the current accounts
+      console.log(`[actions] Getting accounts`)
+      if (input) {
+        return db.accounts.filter((account) => account.id === input)
+      }
+      return db.accounts
     }
   }),
   addIncome: defineAction({

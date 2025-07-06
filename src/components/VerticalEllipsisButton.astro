@@ -1,0 +1,30 @@
+---
+import Options from '@assets/options.svg'
+const { id } = Astro.props
+---
+
+<button
+  movement-id={id}
+  class="text-gray-400 hover:text-white hover:cursor-pointer font-semibold p-1"
+>
+  <Options
+    width={24}
+    height={24}
+  />
+</button>
+
+<script>
+  import { actions } from 'astro:actions'
+
+  const $optionsButtons = document.querySelectorAll(
+    '[movement-id]'
+  ) as NodeListOf<HTMLButtonElement>
+
+  $optionsButtons.forEach(($button) => {
+    $button.addEventListener('click', (event) => {
+      const movementId = $button.getAttribute('movement-id')
+      // TODO: Open actions mennu for this movement
+      console.log(`Open actions menu for movement with id: ${movementId}`)
+    })
+  })
+</script>
