@@ -1,108 +1,111 @@
 ---
 import { actions } from 'astro:actions'
-const { data: accounts, error } = await Astro.callAction(actions.getAccounts, '')
+const { data: accounts, error } = await Astro.callAction(actions.accounts.getAll, '')
 if (!accounts || error) {
   console.error('Error fetching accounts:', error)
   throw new Error('Failed to fetch accounts')
+}
+const result = Astro.getActionResult(actions.movements.create)
+if (result && !result.error) {
+  console.log(`DEBUG:result:`, result)
 }
 ---
 
 <dialog
   id="movements-modal"
-  class="bg-transparent w-full self-center mx-auto max-w-3xl"
+  open
+  class="bg-gray-900/5 w-full fixed top-5 left-0 justify-items-center  backdrop-blur-xs animate-fade-in"
 >
-  <main
-    class="border border-red-600 rounded-lg p-6 shadow-lg bg-gray-900 backdrop-blur-3xl"
+  <form
+    action={actions.movements.create}
+    method="post"
+    class="flex flex-col space-y-2 bg-slate-800/90 text-gray-300 border border-gray-600 rounded-lg w-full max-w-lg p-6 shadow-lg"
   >
-    <h2 class="text-xl font-semibold mb-4">Movements</h2>
-    <form
-      action="/movements"
-      method="post"
-      class="flex flex-col space-y-4"
+    <header class="text-center">
+      <h2 class="text-xl font-semibold mb-4">Add Movement</h2>
+      <p class="text-sm">Register a new movements to your budget</p>
+    </header>
+    <label for="amount"> Amount </label>
+    <input
+      type="number"
+      name="amount"
+      id="amount"
+      autofocus
+      required
+    />
+    <label for="description"> Description </label>
+    <input
+      type="text"
+      id="description"
+      name="description"
+      required
+    />
+    <label for="type">Type </label>
+    <select
+      id="type"
+      name="type"
+      required
     >
-      <label>
-        <span>Amount</span>
-        <input
-          type="number"
-          name="amount"
-          autofocus
-          required
-        />
-      </label>
-      <label>
-        <span>Description</span>
-        <input
-          type="text"
-          name="description"
-          required
-        />
-      </label>
-      <label>
-        <span>Type</span>
-        <select
-          name="type"
-          required
-        >
-          <option value="income">Income</option>
-          <option value="expense">Expense</option>
-        </select>
-      </label>
-      <label>
-        <span>Date</span>
-        <input
-          type="date"
-          name="date"
-          required
-        />
-      </label>
-      <label>
-        <span>Accounts</span>
-      </label>
-      <select
-        name="accounts"
-        required
+      <option value="income">Income</option>
+      <option value="expense">Expense</option>
+      <option value="transfer">Transfer</option>
+    </select>
+    <label for="date">Date </label>
+    <input
+      type="date"
+      id="date"
+      name="date"
+      required
+      value={new Date().toISOString().split('T')[0]}
+    />
+    <label for="accounts"> Account </label>
+    <select
+      id="accounts"
+      name="accounts"
+      required
+    >
+      {accounts.map((account) => <option value={account.id}>{account.name}</option>)}
+    </select>
+    <footer class="flex justify-around items-center mt-4 gap-4">
+      <button
+        type="button"
+        commandfor="movements-modal"
+        command="close"
+        class="px-4 py-2 bg-slate-700/90 rounded w-full hover:bg-slate-700 cursor-pointer"
       >
-        {accounts.map((account) => <option value={account.id}>{account.name}</option>)}
-      </select>
-      <div class="flex justify-around items-center mt-4 gap-4">
-        <button
-          type="button"
-          commandfor="movements-modal"
-          command="close"
-          class="px-4 py-2 bg-slate-700/90 rounded w-full hover:bg-slate-700 cursor-pointer"
-        >
-          Cancel
-        </button>
-        <button
-          type="submit"
-          class="px-4 py-2 bg-blue-600/85 rounded w-full hover:bg-blue-600 cursor-pointer"
-        >
-          Add Movement
-        </button>
-      </div>
-    </form>
-  </main>
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="px-4 py-2 bg-blue-600/85 rounded w-full hover:bg-blue-600 cursor-pointer"
+      >
+        Add Movement
+      </button>
+    </footer>
+  </form>
 </dialog>
 
 <style>
-  main {
-    animation: fade-in 100ms ease-in-out;
-    color: #fafafa;
-  }
-  main input,
+  input,
   select {
     width: 100%;
+    height: 36px;
     padding: 4px 12px;
     background: #1e2939;
     border-radius: 6px;
     outline: none;
+    border: solid 1px #374151;
+  }
+  ::picker(select) {
+    background: #fafafa;
+    color: red;
   }
   input:focus,
   select:focus {
     border: solid 1px #3b82f6;
   }
-  span {
-    color: #d1d5dc;
+  label {
+    margin: 0;
   }
   @keyframes fade-in {
     from {

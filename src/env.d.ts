@@ -5,7 +5,7 @@ declare namespace App {
 }
 
 export type Movement = {
-  id: `${string}-${string}-${string}-${string}-${string}`
+  id: `${string}-${string}-${string}-${string}-${string}` | undefined
   description?: string
   accounts?: { from: Account; to?: Account }[]
   amount: number
@@ -24,9 +24,9 @@ export type Transfer = Movement & {
 }
 
 export type Account = {
-  id: `${string}-${string}-${string}-${string}-${string}`
+  id?: `${string}-${string}-${string}-${string}-${string}` | string
   name: string
-  balance: number
+  balance: number | undefined
 }
 // export type Env = {
 // 	MOVEMENTS: KVNamespace

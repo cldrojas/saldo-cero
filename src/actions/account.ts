@@ -1,6 +1,0 @@
-/*
-onboardingInicial()
-updatePreferencias()
-toggleModoPrivado()
-setRecordatorios()
-*/

@@ -1,0 +1,22 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+// from the list of movements, here you can view details and edit fields of the movement
+const { movementId } = Astro.params;
+---
+
+<Layout title={`Movement ${movementId}`}>
+  <main class="pt-2">
+    <header class="flex gap-2 items-center justify-between mb-2">
+      <h1 class="text-xl font-semibold">Movement {movementId}</h1>
+      <a
+        href="/movements"
+        class="px-4 py-2 bg-gray-800 rounded-lg text-gray-200 hover:bg-gray-700"
+      >
+        Back to Movements
+      </a>
+    </header>
+    <p>Details of movement {movementId} will be displayed here.</p>
+    <!-- You can add more details and edit fields here -->
+  </main>
+</Layout>

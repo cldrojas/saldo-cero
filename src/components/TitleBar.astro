@@ -31,7 +31,13 @@ const toggles = [
 ---
 
 <div class="flex justify-between items-center text-sm">
-  <h1 class="text-xl font-bold">Daily Budget</h1>
+  {
+    Astro.url.pathname === '/' ? (
+      <h1 class="text-xl font-bold">Saldo Cero</h1>
+    ) : (
+      <h3>Go back</h3>
+    )
+  }
   <div class="flex items-center gap-4">
     {
       toggles.map((toggle) => (
