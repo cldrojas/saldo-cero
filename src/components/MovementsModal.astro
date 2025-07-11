@@ -13,8 +13,7 @@ if (result && !result.error) {
 
 <dialog
   id="movements-modal"
-  open
-  class="bg-gray-900/5 w-full fixed top-5 left-0 justify-items-center  backdrop-blur-xs animate-fade-in"
+  class="bg-gray-900/5 w-full fixed top-5 left-0 justify-items-center backdrop-blur-xs animate-fade-in"
 >
   <form
     action={actions.movements.create}
@@ -23,7 +22,7 @@ if (result && !result.error) {
   >
     <header class="text-center">
       <h2 class="text-xl font-semibold mb-4">Add Movement</h2>
-      <p class="text-sm">Register a new movements to your budget</p>
+      <p class="text-sm">Register a new movement to your budget</p>
     </header>
     <label for="amount"> Amount </label>
     <input
@@ -51,13 +50,19 @@ if (result && !result.error) {
       <option value="transfer">Transfer</option>
     </select>
     <label for="date">Date </label>
-    <input
-      type="date"
-      id="date"
-      name="date"
-      required
-      value={new Date().toISOString().split('T')[0]}
-    />
+
+    <span class="datepicker-toggle">
+      <span class="datepicker-toggle-button"></span>
+      <input
+        type="date"
+        name="date"
+        id="date"
+        class="datepicker-input"
+        max={new Date().toISOString().split('T')[0]}
+        value={new Date().toISOString().split('T')[0]}
+      />
+    </span>
+
     <label for="accounts"> Account </label>
     <select
       id="accounts"
@@ -95,11 +100,13 @@ if (result && !result.error) {
     border-radius: 6px;
     outline: none;
     border: solid 1px #374151;
+    appearance: base-select;
   }
-  ::picker(select) {
-    background: #fafafa;
-    color: red;
-  }
+  /* input[type='date']::-webkit-calendar-picker-indicator {
+    display: none;
+    border: solid 1px red;
+    width: 100% !important;
+  } */
   input:focus,
   select:focus {
     border: solid 1px #3b82f6;
@@ -114,5 +121,43 @@ if (result && !result.error) {
     to {
       opacity: 1;
     }
+  }
+
+  .datepicker-toggle {
+    display: inline-block;
+    position: relative;
+
+    border: solid 1px #374151;
+    width: 100%;
+    border-radius: 6px;
+    height: 37px;
+  }
+  .datepicker-toggle-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .datepicker-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  .datepicker-input::-webkit-calendar-picker-indicator {
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
   }
 </style>
