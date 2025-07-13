@@ -7,13 +7,13 @@ if (!accounts || error) {
 }
 const result = Astro.getActionResult(actions.movements.create)
 if (result && !result.error) {
-  console.log(`DEBUG:result:`, result)
+  console.log(`DEBUG:result after adding a new movement:`, result)
 }
 ---
 
 <dialog
   id="movements-modal"
-  class="bg-gray-900/5 w-full fixed top-5 left-0 justify-items-center backdrop-blur-xs animate-fade-in"
+  class="bg-gray-900/5 w-full h-full fixed top-5 left-0 justify-items-center backdrop-blur-xs animate-fade-in"
 >
   <form
     action={actions.movements.create}
@@ -63,14 +63,17 @@ if (result && !result.error) {
       />
     </span>
 
-    <label for="accounts"> Account </label>
+    <label for="from"> Account </label>
     <select
-      id="accounts"
-      name="accounts"
+      id="from"
+      name="from"
       required
     >
       {accounts.map((account) => <option value={account.id}>{account.name}</option>)}
     </select>
+    {
+      // should only show if the type is transfer
+    }
     <footer class="flex justify-around items-center mt-4 gap-4">
       <button
         type="button"

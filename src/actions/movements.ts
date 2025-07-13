@@ -32,7 +32,10 @@ export const movements = {
       amount: z.number(),
       date: z.string().optional(),
       description: z.string().optional(),
-      accounts: z.array(z.string()).optional()
+      accounts: z.object({
+        from: z.string(),
+        to: z.string().optional()
+      })
     }),
     handler: async (input) => {
       const newMovement = {
