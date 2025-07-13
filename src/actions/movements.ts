@@ -48,4 +48,6 @@ export const movements = {
       return newMovement
     }
   })
+
+  // TODO: check movements accounts and update accounts balance
 }

@@ -14,6 +14,13 @@ const visibleMovements =
   typeof limit === 'number' && limit > 0
     ? movements.slice(-limit).toReversed()
     : movements
+const getAccounts = (movement: Movement) => {
+  if (!movement.accounts) return ''
+  if (movement.type === 'transfer') {
+    return `${movement.accounts.from} → ${movement.accounts.to || ''}`.trim()
+  }
+  return movement.accounts.from || ''
+}
 ---
 
 <div class="flex flex-col max-h-82 overflow-y-auto">
@@ -34,7 +41,7 @@ const visibleMovements =
                 {movement.date.toLocaleDateString('en-es', {
                   dateStyle: 'medium'
                 })}
-                - {movement.accounts?.map((movement) => movement).join(', ')}
+                - {getAccounts(movement)}
               </p>
             </div>
           </a>

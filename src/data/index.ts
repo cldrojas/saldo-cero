@@ -11,7 +11,9 @@ export const db = {
       type: 'income',
       amount: 150300,
       description: 'Initial balance',
-      accounts: [{ code: 'rut', name: 'Cta RUT', balance: 150300 }],
+      accounts: {
+        from: 'Cta RUT' // account.name
+      },
       date: new Date('2023-10-01')
     },
     {
@@ -19,6 +21,9 @@ export const db = {
       type: 'expense',
       amount: 10000,
       description: 'Groceries',
+      accounts: {
+        from: 'MercadoPago' // account.name
+      },
       date: new Date('2023-10-02')
     },
     {
@@ -26,6 +31,9 @@ export const db = {
       type: 'expense',
       amount: 5000,
       description: 'Transport',
+      accounts: {
+        from: 'Cta RUT' // account.name
+      },
       date: new Date('2023-10-03')
     },
     {
@@ -33,17 +41,17 @@ export const db = {
       type: 'transfer',
       amount: 2000,
       date: new Date('2023-10-04'),
-      description: 'Transfer to Mach',
-      accounts: [
-        { id: 'rut', name: 'Cta RUT' },
-        { id: 'mach', name: 'Mach' }
-      ]
+      description: 'Transfer to Coopeuch',
+      accounts: {
+        from: 'Mach', // account.name
+        to: 'Coopeuch' // account.name
+      }
     }
   ] as Movement[], // Array to store movements
   accounts: [
-    { id: 'rut', name: 'Cta RUT' },
-    { id: 'mach', name: 'Mach' },
-    { id: 'mercado', name: 'Mercadopago' },
-    { id: 'coopeuch', name: 'Coopeuch vista' }
+    { id: 'rut', name: 'Cta RUT', balance: 7200 },
+    { id: 'mach', name: 'Mach', balance: 35720 },
+    { id: 'mercado', name: 'Mercadopago', balance: 128350 },
+    { id: 'coopeuch', name: 'Coopeuch', balance: 375 }
   ] as Account[] // Array to store accounts
 }
