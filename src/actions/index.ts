@@ -7,37 +7,29 @@ import { db } from '@data/index'
 export const server = {
   movements,
   accounts,
-  getBalance: defineAction({
-    handler: async () => {
-      return {
-        ...db
-      }
-    }
-  }),
   getDailyBalance: defineAction({
+    
     handler: async () => {
-      return (
-        db.total +
-        db.movements.reduce((acc, movement) => {
-          if (
-            movement.date.toDateString() === new Date().toDateString() &&
-            movement.type === 'income'
-          ) {
-            return acc + movement.amount
-          }
-
-          return acc
-        }, 0) - // Calculate the daily balance by summing today's income movements and removing expenses
-        db.movements.reduce((acc, movement) => {
-          if (
-            movement.date.toDateString() === new Date().toDateString() &&
-            movement.type === 'expense'
-          ) {
-            return acc - movement.amount
-          }
-          return acc
-        }, 0)
-      )
+      console.log(`DEBUG:db:`, db)
+      return{
+        total: db.total,
+        remaining: db.remaining,
+        dailyAllowance: db.dailyAllowance,
+        remainingDays: db.remainingDays,
+        accounts: db.accounts.map((account) => ({
+          id: account.id,
+          name: account.name,
+          balance: account.balance
+        })),
+        movements: db.movements.map((movement) => ({
+          id: movement.id,
+          type: movement.type,
+          amount: movement.amount,
+          description: movement.description,
+          date: movement.date.toISOString(),
+          accounts: movement.accounts
+        }))
+      }
     }
   })
 }
