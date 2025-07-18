@@ -38,9 +38,9 @@ Pensada para personas que:
 
 ## 🛠️ Stack Tecnológico
 
-- **Frontend:** Astro + React  
-- **Estado y lógica:** Signals + Store propia  
-- **Backend (próximamente):** Supabase / SQLite local  
+- **Frontend:** Astro + preact 
+- **Estado y lógica:** Astro actions
+- **Backend (próximamente):** Supabase / Turso / SQLite local   
 - **Estilo:** Tailwind CSS + diseño responsivo 
 - **CI/CD (próximamente):** GitHub Actions
 
@@ -52,8 +52,8 @@ Lista de funciones implementadas o por implementar (se irá actualizando):
 
 | Estado | Función                              | Descripción breve                        |
 |--------|--------------------------------------|-------------------------------------------|
-| ✅     | Onboarding                           | Flujo simple para explicar la app         |
-| 🟡     | Registro de ingresos/gastos          | Entrada manual con sugerencias            |
+| 🟧     | Onboarding                           | Flujo simple para explicar la app         |
+| 🔜     | Registro de ingresos/gastos          | Entrada manual con sugerencias            |
 | 🔜     | Cálculo de saldo real                | Resta automática de pagos futuros         |
 | 🔜     | Notificaciones inteligentes          | Recordatorios personalizados              |
 | 🔜     | Planificador mensual                 | Vista de flujo futuro de dinero           |
@@ -82,10 +82,8 @@ Inspirado por el caos, construido con cariño.
 ```
 src/pages/
 ├── index.astro                  → Dashboard (Inicio)
-├── registrar.astro              → Registrar gasto/ingreso
-├── historial.astro              → Movimientos previos
-├── metas.astro                  → Metas de ahorro
-├── presupuesto.astro            → Presupuesto mensual
-├── configuracion.astro          → Perfil y ajustes
+├── activity.astro              → Historial de movimientos
+├── budget.astro            → Presupuesto mensual
+├── configs.astro          → Perfil y ajustes
 ├── onboarding.astro
 ```
