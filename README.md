@@ -38,9 +38,9 @@ Pensada para personas que:
 
 ## 🛠️ Stack Tecnológico
 
-- **Frontend:** Astro + React  
-- **Estado y lógica:** Signals + Store propia  
-- **Backend (próximamente):** Supabase / SQLite local  
+- **Frontend:** Astro + preact 
+- **Estado y lógica:** Astro actions
+- **Backend (próximamente):** Supabase / Turso / SQLite local   
 - **Estilo:** Tailwind CSS + diseño responsivo 
 - **CI/CD (próximamente):** GitHub Actions
 
