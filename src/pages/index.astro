@@ -3,11 +3,13 @@ import Layout from '@layouts/Layout.astro'
 import OverView from '@components/OverView.astro'
 import MovementsList from '@components/MovementsList.astro'
 import '@styles/global.css'
+import DebugPanel from '@components/DebugPanel.astro'
 ---
 
 <Layout>
   <!-- main dashboard -->
-  <OverView />
+  <!-- <DebugPanel /> -->
+  <OverView server:defer />
   <div class="flex items-center justify-between px-1">
     <h2 class="p-2 font-semibold text-sky-600">Recent activity</h2>
     <a href="/movements">View all</a>

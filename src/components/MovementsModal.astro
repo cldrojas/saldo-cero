@@ -6,19 +6,23 @@ if (!accounts || error) {
   throw new Error('Failed to fetch accounts')
 }
 const result = Astro.getActionResult(actions.movements.create)
-if (result && !result.error) {
+if (result?.error) console.error(error)
+if (result) {
   console.log(`DEBUG:result after adding a new movement:`, result)
 }
 ---
 
 <dialog
   id="movements-modal"
-  class="bg-gray-900/5 w-full h-full fixed top-5 left-0 justify-items-center backdrop-blur-xs animate-fade-in"
+  class="bg-gray-900/5 w-screen h-screen fixed top-0 left-0
+  border
+        justify-items-center backdrop-blur-xs animate-fade-in"
 >
   <form
     action={actions.movements.create}
     method="post"
-    class="flex flex-col space-y-2 bg-slate-800/90 text-gray-300 border border-gray-600 rounded-lg w-full max-w-lg p-6 shadow-lg"
+    class="flex flex-col space-y-2 bg-slate-800/90 text-gray-300 mx-auto
+            border border-gray-600 rounded-lg w-full max-w-lg p-6 shadow-lg"
   >
     <header class="text-center">
       <h2 class="text-xl font-semibold mb-4">Add Movement</h2>

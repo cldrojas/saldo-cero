@@ -2,33 +2,29 @@ import { defineAction } from 'astro:actions'
 import type { Account, Movement } from 'src/env'
 import { movements } from './movements'
 import { accounts } from './accounts'
+import { config } from './config'
 import { db } from '@data/index'
+import { z } from 'astro:content'
 
 export const server = {
   movements,
   accounts,
+  config,
   getDailyBalance: defineAction({
-    
+    input: z.object({
+      accountId: z.string()
+    }),
     handler: async () => {
-      console.log(`DEBUG:db:`, db)
-      return{
-        total: db.total,
-        remaining: db.remaining,
-        dailyAllowance: db.dailyAllowance,
-        remainingDays: db.remainingDays,
-        accounts: db.accounts.map((account) => ({
-          id: account.id,
-          name: account.name,
-          balance: account.balance
-        })),
-        movements: db.movements.map((movement) => ({
-          id: movement.id,
-          type: movement.type,
-          amount: movement.amount,
-          description: movement.description,
-          date: movement.date.toISOString(),
-          accounts: movement.accounts
-        }))
+      const account = db.selectedAccount
+      if (!account) {
+        throw new Error('Account not found')
+      }
+      return {
+        total: account.balance,
+        remaining: account.remaining,
+        dailyAllowance: account.allowance,
+        remainingDays: db.config.remainingDays,
+        selectedAccount: db.selectedAccount
       }
     }
   })

@@ -32,12 +32,11 @@ export const movements = {
       amount: z.number(),
       date: z.string().optional(),
       description: z.string().optional(),
-      accounts: z.object({
-        from: z.string(),
-        to: z.string().optional()
-      })
+      from: z.string(),
+      to: z.string().optional()
     }),
     handler: async (input) => {
+      console.log(`actions:creating movement:`)
       const newMovement = {
         id: crypto.randomUUID(),
         ...input,

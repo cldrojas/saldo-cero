@@ -15,11 +15,11 @@ const visibleMovements =
     ? movements.slice(-limit).toReversed()
     : movements
 const getAccounts = (movement: Movement) => {
-  if (!movement.accounts) return ''
+  if (!movement.from) return ''
   if (movement.type === 'transfer') {
-    return `${movement.accounts.from} → ${movement.accounts.to || ''}`.trim()
+    return `${movement.from} → ${movement.to || ''}`.trim()
   }
-  return movement.accounts.from || ''
+  return movement.from || ''
 }
 ---
 

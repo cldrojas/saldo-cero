@@ -5,12 +5,13 @@ declare namespace App {
 }
 
 export type Movement = {
-  id: `${string}-${string}-${string}-${string}-${string}` | undefined
-  description?: string
-  accounts?: { from: string; to?: string }
   amount: number
-  type: 'income' | 'expense' | 'transfer'
   date: Date
+  description?: string
+  from: string
+  id: `${string}-${string}-${string}-${string}-${string}` | undefined
+  to?: string
+  type: 'income' | 'expense' | 'transfer'
 }
 
 export type Expense = Movement & {
@@ -26,7 +27,9 @@ export type Transfer = Movement & {
 export type Account = {
   id?: `${string}-${string}-${string}-${string}-${string}` | string
   name: string
-  balance: number | undefined
+  balance: number
+  remaining: number
+  allowance: number
 }
 // export type Env = {
 // 	MOVEMENTS: KVNamespace
